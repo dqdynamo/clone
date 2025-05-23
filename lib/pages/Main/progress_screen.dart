@@ -153,18 +153,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 28),
-                  SizedBox(
-                    height: 240,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: _Chart(
-                        data: data,
-                        isActivity: true,
-                        period: _period,
-                      ),
-                    ),
-                  ),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -182,21 +171,28 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       }),
                     ],
                   ),
+                  const SizedBox(height: 12),
                   Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 22,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: _Chart(
+                        data: data,
+                        isActivity: true,
+                        period: _period,
                       ),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(26),
-                        ),
-                      ),
-                      child: _ActivityStats(data: data, period: _period),
                     ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 22),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(26),
+                      ),
+                    ),
+                    child: _ActivityStats(data: data, period: _period),
                   ),
                 ],
               );
@@ -263,8 +259,7 @@ class _Chart extends StatelessWidget {
               reservedSize: 40,
               interval: maxY / 4,
               showTitles: true,
-              getTitlesWidget:
-                  (v, _) => Text(
+              getTitlesWidget: (v, _) => Text(
                 v.toInt().toString(),
                 style: const TextStyle(color: Colors.white70, fontSize: 12),
               ),
@@ -275,6 +270,7 @@ class _Chart extends StatelessWidget {
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
+              reservedSize: 32, // 👈 Добавлен отступ для подписи X-оси
               interval: 1,
               getTitlesWidget: (value, _) {
                 final index = value.toInt();
@@ -313,8 +309,7 @@ class _Chart extends StatelessWidget {
             color: Colors.white,
             dotData: FlDotData(
               show: true,
-              getDotPainter:
-                  (spot, percent, barData, index) => FlDotCirclePainter(
+              getDotPainter: (spot, percent, barData, index) => FlDotCirclePainter(
                 radius: 3,
                 color: Colors.white,
                 strokeColor: Colors.white,

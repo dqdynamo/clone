@@ -1,7 +1,5 @@
-import 'package:diploma/services/device_service.dart';
 import 'package:diploma/services/health_service.dart';
 import 'package:diploma/services/profile_service.dart';
-import 'package:diploma/services/sleep_tracker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:diploma/pages/Authentication/splash_screen.dart';
@@ -26,8 +24,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ProfileService()),
-        ChangeNotifierProvider(create: (context) => ActivityTrackerService()),
-        ChangeNotifierProvider(create: (_) => DeviceService()),
+        ChangeNotifierProvider(create: (context) => ActivityTrackerService())
       ],
       child: const MyApp(),
     ),
